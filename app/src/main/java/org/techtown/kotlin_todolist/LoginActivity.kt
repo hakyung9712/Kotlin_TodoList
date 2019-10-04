@@ -11,7 +11,7 @@ import org.techtown.kotlin_todolist.Room.UserDao
 import java.util.ArrayList
 
 class LoginActivity: AppCompatActivity() {
-    val userList = ArrayList<User>()
+    private val userList = ArrayList<User>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,15 +20,14 @@ class LoginActivity: AppCompatActivity() {
         btn_login.setOnClickListener {
             val email=login_email.text.toString()
             val pwd=login_pwd.text.toString()
-            if(checkLogin(email,pwd)){
-                val intent= Intent(this,MainActivity::class.java)
-                startActivity(intent)
-                finish()
-            }else if(checkId(email)){
-                Toast.makeText(this,"비밀번호 정보가 잘못되었습니다.",Toast.LENGTH_LONG).show()
-            }
-            else{
-               Toast.makeText(this,"로그인 정보가 잘못되었습니다.",Toast.LENGTH_LONG).show()
+            when {
+                checkLogin(email,pwd) -> {
+                    val intent= Intent(this,MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
+                }
+                checkId(email) -> Toast.makeText(this,"비밀번호 정보가 잘못되었습니다.",Toast.LENGTH_LONG).show()
+                else -> Toast.makeText(this,"로그인 정보가 잘못되었습니다.",Toast.LENGTH_LONG).show()
             }
         }
 
@@ -39,7 +38,7 @@ class LoginActivity: AppCompatActivity() {
     }
 
     //아이디와 비밀번호 체크
-    fun checkLogin(email:String, pwd:String):Boolean{
+    private fun checkLogin(email:String, pwd:String):Boolean{
         val userDb: UserDB? = UserDB.getInstance(this)
         val userDao: UserDao = userDb!!.userDao
         val loginThread = Thread { userList.addAll(userDao.userLogin(email,pwd)) }
@@ -58,7 +57,7 @@ class LoginActivity: AppCompatActivity() {
     }
 
     //아이디는 맞으나 비밀번호가 틀린경우
-    fun checkId(email:String):Boolean{
+    private fun checkId(email:String):Boolean{
         val userDb: UserDB? = UserDB.getInstance(this)
         val userDao: UserDao = userDb!!.userDao
         val checkIdThread = Thread { userList.addAll(userDao.findUser(email)) }

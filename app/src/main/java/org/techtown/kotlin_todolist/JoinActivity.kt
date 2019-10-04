@@ -24,7 +24,7 @@ class JoinActivity :AppCompatActivity(){
         }
     }
 
-    fun signUp(email:String, pwd:String,pwdCheck:String){
+    private fun signUp(email:String, pwd:String, pwdCheck:String){
         val userDb: UserDB? = UserDB.getInstance(this)
         val userDao:UserDao= userDb!!.userDao
 
