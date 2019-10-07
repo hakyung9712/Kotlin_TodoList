@@ -48,5 +48,6 @@ class JoinActivity :AppCompatActivity(){
         Thread { userDb!!.userDao.insert(user) }.start()
         val intent=Intent(this,LoginActivity::class.java)
         startActivity(intent)
+        finish()
     }
 }
