@@ -32,8 +32,9 @@ class LoginActivity: AppCompatActivity() {
         login_email.setText(saveEmail)
 
         //자동로그인 시 event
-        if (autoEmail != null && autoPwd != null) {
-            if(checkLogin(autoEmail,autoPwd)) {
+        //자동 로그인 체크시
+        when {
+            autoEmail != null && autoPwd != null -> if(checkLogin(autoEmail,autoPwd)) {
                 Toast.makeText(this, "자동 로그인 되었습니다.", Toast.LENGTH_LONG).show()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
@@ -47,10 +48,12 @@ class LoginActivity: AppCompatActivity() {
                 checkLogin(email, pwd) -> {
                     Toast.makeText(this, "로그인 되었습니다.", Toast.LENGTH_LONG).show()
                     //자동 로그인 체크시
-                    if (autoLogin.isChecked){
-                        editor.putString("email", email)
-                        editor.putString("password", pwd)
-                        editor.commit()
+                    when {
+                        autoLogin.isChecked -> {
+                            editor.putString("email", email)
+                            editor.putString("password", pwd)
+                            editor.commit()
+                        }
                     }
                     saveEditor.putString("email",email)
                     saveEditor.commit()
