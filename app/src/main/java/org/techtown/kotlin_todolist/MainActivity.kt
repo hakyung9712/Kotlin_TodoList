@@ -24,5 +24,10 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "로그아웃합니다.", Toast.LENGTH_LONG).show()
             finish()
         }
+        main_add.setOnClickListener {
+            val intent = Intent(this, MemoActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(intent)
+        }
     }
 }
