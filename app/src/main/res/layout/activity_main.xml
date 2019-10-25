@@ -10,25 +10,61 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_gravity="center|right"
+        android:background="#A29F9F"
+        android:orientation="horizontal"
+        android:padding="10sp">
 
-        <Button
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:layout_weight="2"
+            android:padding="5sp"
+            android:text="To Do List"
+            android:textColor="#FAFAFA"
+            android:textSize="24sp" />
+
+<!--        <Button-->
+<!--            android:id="@+id/main_add"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="+" />-->
+
+<!--        <Button-->
+<!--            android:id="@+id/main_logout"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="로그아웃" />-->
+
+        <ImageButton
             android:id="@+id/main_logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="로그아웃" />
+            android:layout_weight="0.5"
+            android:background="#A29F9F"
+            android:padding="11sp"
+            app:srcCompat="@android:drawable/ic_menu_myplaces" />
 
-        <Button
+        <ImageButton
             android:id="@+id/main_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="+" />
+            android:layout_weight="0.5"
+            android:background="#A29F9F"
+            android:padding="9sp"
+            app:srcCompat="@android:drawable/ic_menu_edit" />
 
-        <Button
-            android:id="@+id/main_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-" />
+<!--        <ImageButton-->
+<!--            android:id="@+id/"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="#A29F9F"-->
+<!--            app:srcCompat="@android:drawable/ic_menu_add" />-->
+
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

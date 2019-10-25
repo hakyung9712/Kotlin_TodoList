@@ -3,34 +3,92 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/memo_memo_date"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Date"
-        android:clickable="true"
-        android:editable="false"
-        android:focusable="false"/>
-    <TextView
-        android:id="@+id/memo_memo_time"
-        android:layout_width="wrap_content"
+        android:layout_gravity="center|right"
+        android:background="#A29F9F"
+        android:orientation="horizontal"
+        android:padding="10sp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5sp"
+            android:layout_weight="2"
+            android:padding="5sp"
+            android:text="To Do List"
+            android:textColor="#FAFAFA"
+            android:textSize="24sp" />
+
+        <!--        <Button-->
+        <!--            android:id="@+id/main_add"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="+" />-->
+
+        <!--        <Button-->
+        <!--            android:id="@+id/main_logout"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="로그아웃" />-->
+
+        <!--        <ImageButton-->
+        <!--            android:id="@+id/"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_weight="1"-->
+        <!--            android:background="#A29F9F"-->
+        <!--            app:srcCompat="@android:drawable/ic_menu_add" />-->
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Time"
-        android:clickable="true"
-        android:editable="false"
-        android:focusable="false"/>
+        android:orientation="horizontal"
+        android:padding="20sp">
+
+        <TextView
+            android:id="@+id/memo_memo_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clickable="true"
+            android:editable="false"
+            android:focusable="false"
+            android:text="날짜 선택하기"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/memo_memo_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:editable="false"
+            android:focusable="false"
+            android:text="시간 선택하기"
+            android:textSize="18sp" />
+    </LinearLayout>
 
     <EditText
         android:id="@+id/memo_memo_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="제목" />
+        android:layout_margin="20sp"
+        android:hint="제목"
+        android:padding="20sp"
+        android:paddingTop="20sp" />
 
     <EditText
         android:id="@+id/memo_memo_content"
         android:layout_width="match_parent"
-        android:layout_height="455dp"
-        android:hint="내용을 작성해주세요." />
+        android:layout_height="334dp"
+        android:layout_margin="20sp"
+        android:hint="내용을 작성해주세요."
+        android:padding="20sp" />
 
     <Button
         android:id="@+id/memo_ok_btn"

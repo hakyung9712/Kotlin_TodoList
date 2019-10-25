@@ -57,6 +57,9 @@ class MemoActivity : AppCompatActivity() {
             val title=memo_memo_title.text.toString()
             val content=memo_memo_content.text.toString()
             saveMemo(title,content);
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+            startActivity(intent)
         }
 
     }

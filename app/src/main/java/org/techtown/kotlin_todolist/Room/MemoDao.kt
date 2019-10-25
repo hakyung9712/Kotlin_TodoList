@@ -1,9 +1,6 @@
 package org.techtown.kotlin_todolist.Room
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface MemoDao {
@@ -12,4 +9,7 @@ interface MemoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(memo: Memo)
+
+    @Delete
+    fun delete(memo:Memo)
 }
