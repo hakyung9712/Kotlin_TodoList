@@ -52,15 +52,7 @@
         android:padding="20sp">
 
         <TextView
-            android:id="@+id/textView4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.5"
-            android:text="기한"
-            android:textSize="18sp" />
-
-        <TextView
-            android:id="@+id/memo_memo_date"
+            android:id="@+id/update_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -71,7 +63,7 @@
             android:textSize="18sp" />
 
         <TextView
-            android:id="@+id/memo_memo_time"
+            android:id="@+id/update_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:clickable="true"
@@ -82,7 +74,7 @@
     </LinearLayout>
 
     <EditText
-        android:id="@+id/memo_memo_title"
+        android:id="@+id/update_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="20sp"
@@ -91,7 +83,7 @@
         android:paddingTop="20sp" />
 
     <EditText
-        android:id="@+id/memo_memo_content"
+        android:id="@+id/update_content"
         android:layout_width="match_parent"
         android:layout_height="334dp"
         android:layout_margin="20sp"
@@ -99,7 +91,7 @@
         android:padding="20sp" />
 
     <Button
-        android:id="@+id/memo_ok_btn"
+        android:id="@+id/update_ok_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"

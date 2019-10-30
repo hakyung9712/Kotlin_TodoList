@@ -2,8 +2,10 @@ package org.techtown.kotlin_todolist
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.appcompat.app.AppCompatActivity
@@ -17,10 +19,12 @@ import java.util.*
 
 class MemoActivity : AppCompatActivity() {
     var cal= Calendar.getInstance()
+    //val save=getSharedPreferences("memo", Context.MODE_PRIVATE)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.memo)
+
 
         val dateSetListener=object:DatePickerDialog.OnDateSetListener{
             override fun onDateSet(view: DatePicker?, year: Int, monthOfYear: Int, dayOfMonth: Int) {

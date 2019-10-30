@@ -7,9 +7,13 @@ interface MemoDao {
     @Query("SELECT * FROM memo")
     fun findMemo():List<Memo>
 
+    @Query("SELECT * FROM memo WHERE id= (:id)")
+    fun findMemoId(id:Int):List<Memo>
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insert(memo: Memo)
 
-    @Delete
-    fun delete(memo:Memo)
+
+    @Query("DELETE FROM memo WHERE id = (:id)")
+    fun delete(id:Int)
 }
