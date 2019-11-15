@@ -72,6 +72,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //스와이프로 삭제처리
     private fun createItemTouchCallback(): ItemTouchHelper.SimpleCallback {
         var helper = object : ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.RIGHT) {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
