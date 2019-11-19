@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
                 mAdapter = MemoAdapter(this, memoList)
                 mAdapter.notifyDataSetChanged()
 
+
                 memo_recyclerView.adapter = mAdapter
                 memo_recyclerView.layoutManager = LinearLayoutManager(this)
                 memo_recyclerView.setHasFixedSize(true)
@@ -80,6 +81,8 @@ class MainActivity : AppCompatActivity() {
                 //여기서의 position은 recyclerview에서의 0,1,2,3.. 순서
                 deleteMemo(mAdapter.getMemoId(position))
                 memo_recyclerView.adapter!!.notifyItemRemoved(position)
+                //mAdapter.notifyItemRemoved(position)
+                //mAdapter.notifyDataSetChanged()
             }
 
             override fun onMove(

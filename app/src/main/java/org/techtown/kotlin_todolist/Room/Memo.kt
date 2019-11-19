@@ -1,10 +1,11 @@
 package org.techtown.kotlin_todolist.Room
 
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 
 @Entity(tableName="memo")
-class Memo (
+class Memo @Ignore constructor(
     var title:String?= null,
     var content:String?=null,
     var year:Int?=null,

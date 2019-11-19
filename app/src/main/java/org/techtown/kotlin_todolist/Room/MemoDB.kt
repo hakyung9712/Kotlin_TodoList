@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 
-@Database(entities = [Memo::class],version=1)
+@Database(entities = [Memo::class],version=1,exportSchema = false)
 abstract class MemoDB:RoomDatabase() {
     abstract val memoDao:MemoDao
 

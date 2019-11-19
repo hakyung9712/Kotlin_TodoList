@@ -6,9 +6,14 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import org.techtown.kotlin_todolist.Retrofit.Request.LoginRequest
+import org.techtown.kotlin_todolist.Retrofit.Response.LoginResponse
 import org.techtown.kotlin_todolist.Room.User
 import org.techtown.kotlin_todolist.Room.UserDB
 import org.techtown.kotlin_todolist.Room.UserDao
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.ArrayList
 
 class LoginActivity: AppCompatActivity() {
@@ -33,18 +38,20 @@ class LoginActivity: AppCompatActivity() {
 
         //자동로그인 시 event
         //자동 로그인 체크시
-        when {
+        /*when {
             autoEmail != null && autoPwd != null -> if(checkLogin(autoEmail,autoPwd)) {
                 Toast.makeText(this, "자동 로그인 되었습니다.", Toast.LENGTH_LONG).show()
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }
-        }
+        }*/
+
         btn_login.setOnClickListener {
             val email = login_email.text.toString()
             val pwd = login_pwd.text.toString()
-            when {
+            //Room으로 로그인
+            /*when {
                 checkLogin(email, pwd) -> {
                     Toast.makeText(this, "로그인 되었습니다.", Toast.LENGTH_LONG).show()
                     //자동 로그인 체크시
@@ -67,15 +74,36 @@ class LoginActivity: AppCompatActivity() {
                     Toast.LENGTH_LONG
                 ).show()
                 else -> Toast.makeText(this, "로그인 정보가 잘못되었습니다.", Toast.LENGTH_LONG).show()
-            }
-        }
+            }*/
 
+            val intent = Intent(this, MainActivity::class.java)
+
+            //Retrofit 서버 연결
+            val loginRequest=LoginRequest(email,pwd)
+            val call=RetrofitGenerator.create().login(loginRequest)
+
+            call.enqueue(object : Callback<LoginResponse> {
+                override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+                    //Toast.makeText(this@LoginActivity,""+response.code(),Toast.LENGTH_LONG).show()
+                    if(response.code()==200){
+                        startActivity(intent)
+                        finish()
+                    }else if(response.code()==400){
+                        Toast.makeText(this@LoginActivity,"로그인 정보가 잘못되었습니다.",Toast.LENGTH_LONG).show()
+                    }
+                }
+                override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                }
+            })
+
+        }
             btn_join.setOnClickListener {
                 val intent = Intent(this, JoinActivity::class.java)
                 startActivity(intent)
                 finish()
             }
     }
+
 
     //아이디와 비밀번호 체크
     private fun checkLogin(email: String, pwd: String): Boolean {

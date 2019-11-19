@@ -2,6 +2,7 @@ package org.techtown.kotlin_todolist
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_join.*
@@ -9,6 +10,14 @@ import org.techtown.kotlin_todolist.Room.User
 import org.techtown.kotlin_todolist.Room.UserDB
 import org.techtown.kotlin_todolist.Room.UserDao
 import java.util.ArrayList
+
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import org.techtown.kotlin_todolist.Retrofit.Request.RegisterRequest
+import org.techtown.kotlin_todolist.Retrofit.Response.RegisterUserResponse
+import org.techtown.kotlin_todolist.RetrofitGenerator
+
 
 class JoinActivity :AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,12 +29,42 @@ class JoinActivity :AppCompatActivity(){
             val pwd = join_pwd.text.toString()
             val pwdCheck = join_pwd2.text.toString()
 
-            signUp(email, pwd, pwdCheck);
+            //signUp(email, pwd, pwdCheck);
+            //Retrofit으로 회원 가입 연결
+            val userRequest=RegisterRequest(email,pwd,pwdCheck)
+            val call=RetrofitGenerator.create().registerUser(userRequest)
+
+            call.enqueue(object : Callback<RegisterUserResponse> {
+                override fun onResponse(call: Call<RegisterUserResponse>, response: Response<RegisterUserResponse>) {
+                    Log.d("success", response.body()?.username.toString())
+                    /*onFinishedListener.onFinished(1)*/
+
+                    when(response!!.code()){
+                        200->{
+                            Toast.makeText(this@JoinActivity,"회원가입 성공",Toast.LENGTH_LONG).show()
+                            finish()
+                        }
+                        405->Toast.makeText(this@JoinActivity,"회원가입 실패:아이디나 비반이 올바르지 않음",Toast.LENGTH_LONG).show()
+                        500->Toast.makeText(this@JoinActivity,"서버 오류",Toast.LENGTH_LONG).show()
+                    }
+                }
+                override fun onFailure(call: Call<RegisterUserResponse>, t: Throwable) {
+                    Log.d("fail", "failed")
+                    //onFinishedListener.onFailure(t)
+                }
+            })
+
+
+            val intent=Intent(this,LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+
         }
     }
 
+    //Room으로 회원가입
     private fun signUp(email:String, pwd:String, pwdCheck:String){
-        val userDb: UserDB? = UserDB.getInstance(this)
+        /*val userDb: UserDB? = UserDB.getInstance(this)
         val userDao:UserDao= userDb!!.userDao
 
         val userList = ArrayList<User>()
@@ -49,5 +88,6 @@ class JoinActivity :AppCompatActivity(){
         val intent=Intent(this,LoginActivity::class.java)
         startActivity(intent)
         finish()
+         */
     }
 }
